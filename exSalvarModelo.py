@@ -7,7 +7,7 @@ model_path = "resultados/cnn_mnist.keras"
 
 (x_train, y_train), (x_test, y_test) = load_mnist(flatten=False)
 model = build_cnn()
-model.fit(x_train, y_train, validation_split=0.1, epochs=3, batch_size=128)
+model.fit(x_train, y_train, validation_split=0.25, epochs=10, batch_size=128)
 model.save(model_path)
 print("Modelo salvo em:", model_path)
 
