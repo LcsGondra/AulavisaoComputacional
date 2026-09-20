@@ -21,6 +21,9 @@ O conteúdo está organizado sequencialmente em módulos temáticos, abrangendo 
 | **[`09_redes_neurais_e_cnn_basica`](09_redes_neurais_e_cnn_basica/)** | Redes Neurais & CNNs | CNN básica para MNIST, visualização de kernels aprendidos e feature maps, classificação CIFAR-10, Transfer Learning com MobileNet e conceitos de detecção. | 6 scripts |
 | **[`10_analise_facial_caffe_utkface`](10_analise_facial_caffe_utkface/)** | Caffe, UTKFace & MobileNetV2 | Pipeline completo de análise facial: modelos Caffe pré-treinados (idade e gênero), dataset UTKFace, fine-tuning com MobileNetV2, matriz de confusão e conversão para TFLite. | 35 scripts |
 | **[`11_visao_computacional_coletanea_geral`](11_visao_computacional_coletanea_geral/)** | Coletânea Abrangente | 28 exemplos ponta a ponta integrando processamento clássico, estereoscopia, LBPH, embeddings faciais, SIFT/ORB, CNNs, Data Augmentation e pipeline webcam em tempo real. | 28 scripts |
+| **[`12_opencv_dnn_e_pipeline_integrativo`](12_opencv_dnn_e_pipeline_integrativo/)** | OpenCV DNN & Pipeline Integrativo | Classificação com OpenCV DNN (MobileNetV2, GoogLeNet, SqueezeNet), comparação com Keras, latência/memória, calibração/undistort, HSV, ORB, HOG/Haar e pipeline completo encadeado. | 32 scripts |
+| **[`13_yolo_ssd_e_rastreamento`](13_yolo_ssd_e_rastreamento/)** | YOLO, SSD & Rastreamento com ID | Detecção em tempo real com YOLOv4-tiny, YOLOv8n e SSD MobileNetV2 via OpenCV DNN/Ultralytics, NMS, tracking por IoU, linhas virtuais de contagem, switches de ID e ética. | 38 scripts |
+| **[`14_exemplo4_classificacao_facial`](14_exemplo4_classificacao_facial/)** | Módulo Complementar Faces | Exemplos e utilitários complementares de verificação de ambiente, localização de Haar Cascades e funções para análise facial (`face_utils.py`, `tf_utils.py`). | 7 scripts/utils |
 | **[`exercicios_praticos_anteriores`](exercicios_praticos_anteriores/)** | Atividades Práticas & Fixação | Exercícios resolvidos e scripts de apoio organizados por categoria (Pré-processamento, Contornos, Redes Neurais/MNIST, Haar/Faces). | 53 scripts |
 
 ---
@@ -114,12 +117,34 @@ pip install -r requirements.txt
   - Criação de cenários sintéticos e ROIs;
   - Segmentação HSV, Otsu e morfologia matemática;
   - Algoritmo GrabCut;
-  - Estereoscopia e conversão para profundidade métrica ($Z = rac{f \cdot B}{d}$);
+  - Estereoscopia e conversão para profundidade métrica ($Z = \frac{f \cdot B}{d}$);
   - Reconhecimento facial com **LBPH** (`cv2.face.LBPHFaceRecognizer`) e embeddings profundos;
   - Descritores locais, matching e recuperação de imagens (CBIR);
   - Comparação MLP vs CNN no Fashion-MNIST, Data Augmentation e Callbacks;
   - Extração de features com projeção 2D (PCA);
   - Pipeline integrado em tempo real combinando segmentação OpenCV com classificação CNN Keras.
+
+### 12. `12_opencv_dnn_e_pipeline_integrativo`
+- 32 scripts cobrindo o uso do módulo `cv2.dnn` e integração completa:
+  - Criação de frames sintéticos e testes de `cv2.dnn.blobFromImage`;
+  - Download de labels ImageNet e inferência com MobileNetV2, GoogLeNet e SqueezeNet;
+  - Conversão de Keras para TFLite e carregamento no OpenCV DNN;
+  - Extração e sobreposição de top-3 classes com barra de confiança;
+  - Medição rigorosa de latência (ms), consumo de memória (MB) e acurácia Top-1 (OpenCV vs Keras);
+  - Pipeline integrativo ponta a ponta: calibração/undistort → segmentação por cor HSV → extração de features ORB → detector HOG/Haar → classificação da ROI com OpenCV DNN.
+
+### 13. `13_yolo_ssd_e_rastreamento`
+- 38 scripts cobrindo detecção em tempo real e tracking com persistência:
+  - Leitura de vídeo, anotação de bounding boxes e medição de FPS/latência;
+  - Aplicação de Non-Maximum Suppression (NMS) e filtragem por limiares de confiança;
+  - Detecção com **YOLOv8** (Ultralytics e OpenCV ONNX), **YOLOv4-tiny** e **SSD MobileNetV2** via OpenCV DNN;
+  - Comparação de tamanho de arquivos em disco, estimativa de parâmetros e tabelas de benchmark;
+  - Rastreamento de objetos por **IoU (Intersection over Union)** com IDs persistentes;
+  - Desenho de trilhas temporais (últimos 30 frames), linha virtual de entrada/saída para contagem cumulativa e medição de taxa de ID switches por minuto;
+  - Relatório técnico sobre ética e impactos de sistemas de contagem e vigilância urbana com drones.
+
+### 14. `14_exemplo4_classificacao_facial`
+- Módulo complementar com utilitários e exemplos de verificação de ambiente, localização de cascatas Haar e funções utilitárias para manipulação do dataset UTKFace e redes MobileNetV2 (`face_utils.py` e `tf_utils.py`).
 
 ---
 
